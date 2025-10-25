@@ -97,31 +97,29 @@ const Header = () => {
       {isMobileMenuOpen && (
         <div className="fixed inset-0 z-50 xl:hidden">
           <div className="fixed inset-0 bg-black bg-opacity-50" onClick={toggleMobileMenu}></div>
+          
+          {/* Close Button - Top Right */}
+          <div className="fixed top-4 right-4 z-60">
+            <button
+              onClick={toggleMobileMenu}
+              className="text-gray-400 hover:text-white flex items-center space-x-2 p-3"
+            >
+              <span className="text-lg">Close</span>
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
           <div className="fixed inset-0 flex">
             {/* Left Section - Navigation */}
-            <div className="flex-1 bg-[#1a1a1a] flex flex-col">
-              {/* Close Button */}
-              <div className="flex justify-end p-6">
-                <button
-                  onClick={toggleMobileMenu}
-                  className="text-gray-400 hover:text-white flex items-center space-x-2"
-                >
-                  <span className="text-sm">Close</span>
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
+            <div className="flex-1 bg-[#1a1a1a] flex flex-col pt-10">
               {/* Logo */}
               <div className="px-6 mb-8">
                 <div className="flex items-center space-x-3">
-                  <div className="w-8 h-8 bg-orange-500 rounded flex items-center justify-center">
-                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                    </svg>
+                  <div className="flex items-center justify-center">
+                    <Image src="/new-logo-light.png" alt="Logo" width={138} height={52} />
                   </div>
-                  <span className="text-white text-xl font-medium">Dom</span>
                 </div>
               </div>
 
@@ -171,7 +169,7 @@ const Header = () => {
                 {/* Have a Project? */}
                 <div>
                   <p className="text-gray-400 text-lg mb-2">Have a Project?</p>
-                  <a href="mailto:Ildarhorizont@gmail.com" className="text-gray-300 text-lg underline hover:text-white transition-colors">
+                  <a href="mailto:Ildarhorizont@gmail.com" className="text-gray-300 text-2xl underline hover:text-white transition-colors">
                     info@website.com
                   </a>
                 </div>
@@ -179,7 +177,7 @@ const Header = () => {
                 {/* Want to Work with Us? */}
                 <div>
                   <p className="text-gray-400 text-lg mb-2">Want to Work with Us?</p>
-                  <a href="/contact" className="text-gray-300 text-lg flex items-center space-x-2 hover:text-white transition-colors">
+                  <a href="/contact" className="text-gray-300 text-2xl flex items-center space-x-2 hover:text-white transition-colors">
                     <span>Send Brief</span>
                     <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -190,7 +188,7 @@ const Header = () => {
                 {/* Ready to Order? */}
                 <div>
                   <p className="text-gray-400 text-lg mb-2">Ready to Order?</p>
-                  <a href="/shop" className="text-gray-300 text-lg flex items-center space-x-2 hover:text-white transition-colors">
+                  <a href="/shop" className="text-gray-300 text-2xl flex items-center space-x-2 hover:text-white transition-colors">
                     <span>Go to Shop</span>
                     <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
