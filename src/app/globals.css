@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Prevent body scroll when mobile menu is open */
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInPeekIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.8);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-15px) scale(1);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes splitHorizontalOut {
+  0% {
+    opacity: 0;
+    transform: scaleX(1) scaleY(0);
+    transform-origin: center;
+  }
+  50% {
+    opacity: 0.8;
+    transform: scaleX(1) scaleY(1.1);
+    transform-origin: center;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1);
+    transform-origin: center;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1.5s ease-out;
+}
+
+.animate-fade-in-peek-in {
+  animation: fadeInPeekIn 1.4s ease-out;
+  animation-delay: 0.3s;
+  animation-fill-mode: both;
+}
+
+.animate-split-horizontal-out {
+  animation: splitHorizontalOut 1.6s ease-out;
+  animation-delay: 0.6s;
+  animation-fill-mode: both;
+}
+
+/* Line clamp utility */
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom border sizes for speech bubble */
+.border-l-10 {
+  border-left-width: 10px;
+}
+
+.border-r-10 {
+  border-right-width: 10px;
+}
+
+.border-t-10 {
+  border-top-width: 10px;
+}
+
+/* Custom line height for review text */
+.review-text {
+  line-height: 21.75px;
+}
