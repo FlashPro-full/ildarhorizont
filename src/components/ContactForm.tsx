@@ -28,15 +28,15 @@ export default function ContactForm() {
 
     try {
       // EmailJS - Using your existing service
-      const serviceId = 'service_o39uiql'; // Your existing service ID
-      const templateId = 'template_58w6b7w'; // Your template ID
-      const publicKey = '0XRy0GwR_e1fph7fF'; // Your actual Public Key
+      const serviceId = 'service_qkhstz9'; // Your existing service ID
+      const templateId = 'template_6j0lqgr'; // Your template ID
+      const publicKey = 'qXdOU3tG_i5UnYO-N'; // Your actual Public Key
 
       const templateParams = {
         from_name: `${formData.firstName} ${formData.lastName}`,
         from_email: formData.email,
         message: formData.message,
-        to_email: 'kalininedward722@gmail.com'
+        to_email: 'ildarhorizont@gmail.com'
       };
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
