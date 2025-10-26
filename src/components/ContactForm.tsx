@@ -69,7 +69,7 @@ export default function ContactForm() {
             name="firstName"
             value={formData.firstName}
             onChange={handleChange}
-            placeholder="First"
+            placeholder="Type your First Name"
             required
             className="w-full px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
           />
@@ -78,7 +78,7 @@ export default function ContactForm() {
             name="lastName"
             value={formData.lastName}
             onChange={handleChange}
-            placeholder="Last"
+            placeholder="Type your Last Name"
             required
             className="w-full px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
           />
@@ -95,7 +95,7 @@ export default function ContactForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          placeholder="Email"
+          placeholder="Type your Gmail address"
           required
           className="w-full px-3 py-2 sm:px-4 sm:py-2 text-sm sm:text-base border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
         />
