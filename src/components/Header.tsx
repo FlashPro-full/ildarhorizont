@@ -9,17 +9,50 @@ import { FaFacebookF, FaTwitter, FaDribbble, FaInstagram } from 'react-icons/fa'
 const Header = () => {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '/services' },
-    { name: 'Portfolio', href: '/portfolio' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Services', href: '/services/' },
+    { name: 'Portfolio', href: '/portfolio/' },
+    { name: 'Contact', href: '/contact/' },
   ];
+
+  // Helper function to check if a navigation item is active
+  const isActiveNavItem = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    // Remove trailing slash from pathname for comparison
+    const normalizedPathname = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
+    const normalizedHref = href.endsWith('/') && href !== '/' ? href.slice(0, -1) : href;
+    return normalizedPathname === normalizedHref;
+  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+
+  // Handle scroll detection and initial load
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      setIsScrolled(scrollTop > 0);
+    };
+
+    // Set initial load state after component mounts
+    const timer = setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 100);
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timer);
+    };
+  }, []);
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
@@ -41,9 +74,13 @@ const Header = () => {
 
   return (
     <>
-      <header className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+      <header className={`bg-white shadow-sm fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
+        isInitialLoad ? 'h-20 lg:h-24' : isScrolled ? 'h-16 lg:h-20' : 'h-20 lg:h-24'
+      } ${isScrolled ? 'animate-bounce-shrink' : 'animate-bounce-expand'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 lg:h-20">
+          <div className={`flex justify-between items-center transition-all duration-700 ease-out ${
+            isInitialLoad ? 'h-20 lg:h-24' : isScrolled ? 'h-16 lg:h-20' : 'h-20 lg:h-24'
+          }`}>
             {/* Left side - Mobile menu and contact */}
             <div className="flex items-center space-x-4">
               <button
@@ -71,7 +108,7 @@ const Header = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-gray-900 text-lg font-medium hover:underline hover:decoration-2 hover:underline-offset-4 transition-all duration-300 ${pathname === item.href ? 'underline decoration-2 underline-offset-4' : ''
+                  className={`text-gray-900 text-lg font-medium hover:underline hover:decoration-2 hover:underline-offset-4 transition-all duration-300 ${isActiveNavItem(item.href) ? 'underline decoration-2 underline-offset-4' : ''
                     }`}
                 >
                   {item.name}
@@ -131,7 +168,7 @@ const Header = () => {
                       key={item.name}
                       href={item.href}
                       onClick={toggleMobileMenu}
-                      className={`block text-3xl font-medium transition-colors ${pathname === item.href
+                      className={`block text-3xl font-medium transition-colors ${isActiveNavItem(item.href)
                         ? 'text-orange-500'
                         : 'text-gray-300 hover:text-white'
                         }`}
